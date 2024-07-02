@@ -67,7 +67,6 @@ jobs:
 
   build_test_job:
     runs-on: ${{ matrix.os }}
-    needs: lint
     env:
       CONDA_ENV: xoscar-test
     defaults:
