@@ -21,6 +21,11 @@ from distutils.command.build_ext import build_ext as _du_build_ext
 from distutils.file_util import copy_file, move_file
 from pathlib import Path
 
+import logging
+
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
+
 from sysconfig import get_config_vars
 
 import numpy as np
@@ -217,6 +222,7 @@ class CMakeBuild(build_ext):
         extdir = ext_fullpath.parent.resolve()
         source_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         build_temp = Path(self.build_temp) / ext.name
+        print(f"build_Cmake build_temp: {build_temp}")
         if not build_temp.exists():
             build_temp.mkdir(parents=True)
 
@@ -299,9 +305,11 @@ class CMakeBuild(build_ext):
 
 
 
+        print(f"1st cmake source_dir: {source_dir}, cmake_args: {cmake_args}, build_temp: {build_temp}")
         subprocess.run(
             ["cmake", source_dir, *cmake_args], cwd=build_temp, check=True
         )
+        print(f"2nd cmake build_args: {build_args}")
         subprocess.run(
             ["cmake", "--build", ".", *build_args], cwd=build_temp, check=True
         )
