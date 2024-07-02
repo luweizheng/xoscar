@@ -216,22 +216,6 @@ class CMakeBuild(build_ext):
             finally:
                 self.compiler = _compiler
 
-    def initialize_options(self):
-            self.build_base = 'build'
-            # these are decided only after 'build_base' has its final value
-            # (unless overridden by the user or client)
-            self.build_purelib = None
-            self.build_platlib = None
-            self.build_lib = None
-            self.build_temp = None
-            self.build_scripts = None
-            self.compiler = None
-            self.plat_name = None
-            self.debug = None
-            self.force = False
-            self.executable = None
-            self.parallel = None
-
     
     def build_Cmake(self, ext: XoscarCmakeExtension) -> None:
         # Must be in this form due to bug in .resolve() only fixed in Python 3.10+
