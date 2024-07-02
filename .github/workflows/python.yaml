@@ -112,7 +112,7 @@ jobs:
       if: ${{ matrix.module != 'gpu' }}
       run: |
         pip install numpy scipy cython coverage flaky
-        pip install -vv -e ".[dev,extra]"
+        pip install -v -e ".[dev,extra]"
       working-directory: ./python
 
     - name: Install ucx dependencies
