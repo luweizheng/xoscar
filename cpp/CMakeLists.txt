@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
 file(GLOB TMP_DIRS "../python/build/lib*")
 foreach(TMP_DIR ${TMP_DIRS})
-  message(${TMP_DIR})
+  message("cpp/CMakeLists.txt TMP_DIR" ${TMP_DIR})
   set(LIBRARY_OUTPUT_DIRECTORY ${TMP_DIR}/xoscar/collective)
 endforeach()
 
