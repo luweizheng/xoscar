@@ -196,6 +196,8 @@ class CMakeBuild(build_ext):
 
 
     def build_extension(self, ext):
+        full_class_name = f'{build_ext.__module__}.{build_ext.__name__}'
+        print(f"full_class_name: {full_class_name}")
         # TODO: support windows compilation
         is_windows = sys.platform.startswith('win')
         bit_number = platform.architecture()[0]
