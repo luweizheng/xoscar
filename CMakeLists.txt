@@ -51,7 +51,7 @@ set_target_properties(
   PROPERTIES CXX_STANDARD 11
              CXX_STANDARD_REQUIRED ON
              CXX_EXTENSIONS OFF)
-message("CMakeLists.txt BUILD_TMP_DIR: " ${BUILD_TMP_DIR})
+message("CMakeLists.txt before BUILD_TMP_DIR: " ${BUILD_TMP_DIR})
 if(NOT DEFINED BUILD_TMP_DIR)
   file(GLOB TMP_DIRS "python/build/temp*")
   foreach(TMP_DIR ${TMP_DIRS})
@@ -60,6 +60,7 @@ if(NOT DEFINED BUILD_TMP_DIR)
 else()
   set(BUILD_TMP_DIR python/${BUILD_TMP_DIR})
 endif()
+message("CMakeLists.txt after BUILD_TMP_DIR: " ${BUILD_TMP_DIR})
 # copy config.h to cpp/gloo/include
 file(COPY ${BUILD_TMP_DIR}/third_party/gloo/gloo/config.h
      DESTINATION ${CMAKE_SOURCE_DIR}/cpp/collective/gloo/include)
