@@ -51,7 +51,6 @@ set_target_properties(
   PROPERTIES CXX_STANDARD 11
              CXX_STANDARD_REQUIRED ON
              CXX_EXTENSIONS OFF)
-message("CMakeLists.txt before BUILD_TMP_DIR: " ${BUILD_TMP_DIR})
 if(NOT DEFINED BUILD_TMP_DIR)
   file(GLOB TMP_DIRS "python/build/temp*")
   foreach(TMP_DIR ${TMP_DIRS})

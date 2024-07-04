@@ -212,7 +212,6 @@ class CMakeBuild(build_ext):
             finally:
                 self.compiler = _compiler
 
-    
     def build_Cmake(self, ext: XoscarCmakeExtension) -> None:
         # Must be in this form due to bug in .resolve() only fixed in Python 3.10+
         ext_fullpath = Path.cwd() / self.get_ext_fullpath(ext.name)

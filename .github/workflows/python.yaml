@@ -76,7 +76,7 @@ jobs:
       fail-fast: false
       matrix:
         os: ["ubuntu-latest", "macos-latest", "windows-latest"]
-        python-version: ["3.11"]
+        python-version: ["3.11", "3.12"]
         module: ["xoscar"]
         exclude:
           - { os: macos-latest, python-version: 3.9}
@@ -112,6 +112,7 @@ jobs:
       if: ${{ matrix.module != 'gpu' }}
       run: |
         pip install -r ../CI/requirements-wheel.txt
+        pip install -r ../CI/requirements-dev.txt
         python setup.py develop
         python setup.py install
       working-directory: ./python
