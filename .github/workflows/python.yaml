@@ -111,8 +111,9 @@ jobs:
         MODULE: ${{ matrix.module }}
       if: ${{ matrix.module != 'gpu' }}
       run: |
-        pip install numpy scipy cython coverage flaky
-        pip install -v -e ".[dev,extra]"
+        pip install -r ../CI/requirements-wheel.txt
+        python setup.py develop
+        python setup.py install
       working-directory: ./python
 
     - name: Install ucx dependencies

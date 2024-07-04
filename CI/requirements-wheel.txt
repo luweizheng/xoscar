@@ -24,6 +24,6 @@ scipy==1.9.2; python_version>='3.11' and python_version<'3.12'
 scipy>=1.11.2; python_version>'3.11'
 
 # see: https://github.com/cython/cython/commit/afc00fc3ba5d43c67151c0039847a526e7b627a5
-cython==0.29.33
+cython>=0.29.33
 requests>=2.4.0
 cloudpickle>=1.5.0
