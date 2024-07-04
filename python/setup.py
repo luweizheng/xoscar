@@ -21,7 +21,6 @@ from distutils.command.build_ext import build_ext as _du_build_ext
 from distutils.file_util import copy_file, move_file
 from pathlib import Path
 
-
 from sysconfig import get_config_vars
 
 import numpy as np
@@ -185,10 +184,11 @@ class CMakeBuild(build_ext):
                 src_filename = os.path.join(src_dir , filename)
                 dest_filename = os.path.join(collective_dir,
                                                 os.path.basename(filename))
-                copy_file(
-                    src_filename, dest_filename, verbose=self.verbose,
-                    dry_run=self.dry_run
-                )
+                if not sys.platform.startswith('win'):
+                    copy_file(
+                        src_filename, dest_filename, verbose=self.verbose,
+                        dry_run=self.dry_run
+                    )
 
 
     def build_extension(self, ext):
