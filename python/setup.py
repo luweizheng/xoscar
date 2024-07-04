@@ -21,10 +21,6 @@ from distutils.command.build_ext import build_ext as _du_build_ext
 from distutils.file_util import copy_file, move_file
 from pathlib import Path
 
-import logging
-
-logging.basicConfig(level=logging.DEBUG)
-logger = logging.getLogger(__name__)
 
 from sysconfig import get_config_vars
 
@@ -48,7 +44,6 @@ except ImportError:
 try:
     # Attempt to use Cython for building extensions, if available
     from Cython.Distutils.build_ext import build_ext as _build_ext
-    print("import Cython.Distutils.build_ext")
 
     # Additionally, assert that the compiler module will load
     # also. Ref #1229.
@@ -197,8 +192,6 @@ class CMakeBuild(build_ext):
 
 
     def build_extension(self, ext):
-        full_class_name = f'{build_ext.__module__}.{build_ext.__name__}'
-        print(f"full_class_name: {full_class_name}")
         # TODO: support windows compilation
         is_windows = sys.platform.startswith('win')
         bit_number = platform.architecture()[0]
@@ -226,7 +219,6 @@ class CMakeBuild(build_ext):
         extdir = ext_fullpath.parent.resolve()
         source_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         build_temp = Path(self.build_temp) / ext.name
-        print(f"build_Cmake build_temp: {build_temp}")
         if not build_temp.exists():
             build_temp.mkdir(parents=True)
 
@@ -309,11 +301,9 @@ class CMakeBuild(build_ext):
 
 
 
-        print(f"1st cmake source_dir: {source_dir}, cmake_args: {cmake_args}, build_temp: {build_temp}")
         subprocess.run(
             ["cmake", source_dir, *cmake_args], cwd=build_temp, check=True
         )
-        print(f"2nd cmake build_args: {build_args}")
         subprocess.run(
             ["cmake", "--build", ".", *build_args], cwd=build_temp, check=True
         )
