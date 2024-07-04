@@ -53,7 +53,7 @@ set_target_properties(
              CXX_EXTENSIONS OFF)
 message("CMakeLists.txt before BUILD_TMP_DIR: " ${BUILD_TMP_DIR})
 # copy config.h to cpp/gloo/include
-file(COPY ${BUILD_TMP_DIR}/python/third_party/gloo/gloo/config.h
+file(COPY ${BUILD_TMP_DIR}/third_party/gloo/gloo/config.h
      DESTINATION ${CMAKE_SOURCE_DIR}/cpp/collective/gloo/include)
 
 add_subdirectory(cpp)
